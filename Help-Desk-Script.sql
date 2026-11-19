@@ -97,3 +97,10 @@ SELECT id, title, priority, status, submitted_by FROM tickets;
 -- UPDATE tickets SET id = 7 WHERE id = 12;
 -- ALTER TABLE tickets AUTO_INCREMENT = 8;
 
+SELECT 'departments' AS table_name, COUNT(*) AS total FROM departments UNION ALL SELECT 'users', COUNT(*) FROM users UNION ALL SELECT 'tickets', COUNT(*) FROM tickets;
+
+SELECT t.id, t.title, t.status, CONCAT(u1.first_name, ' ', u1.last_name) AS submitted_by, CONCAT(u2.first_name, ' ', u2.last_name) AS assigned_to FROM tickets t JOIN users u1 ON t.submitted_by = u1.id JOIN users u2 ON t.assigned_to = u2.id;
+
+SELECT t.id, t.title, t.status, CONCAT(u1.first_name, ' ', u1.last_name) AS submitted_by, CONCAT(u2.first_name, ' ', u2.last_name) AS assigned_to, d.name AS department FROM tickets t JOIN users u1 ON t.submitted_by = u1.id LEFT JOIN users u2 ON t.assigned_to = u2.id LEFT JOIN departments d ON t.department_id = d.id;
+
+ 
