@@ -92,10 +92,10 @@ SELECT id, first_name, last_name, email, ROLE, department_id FROM users;
 SELECT id, title, priority, status, submitted_by FROM tickets;
 
 
--- DELETE FROM tickets WHERE id IN (6, 7, 8, 9, 10);
--- UPDATE tickets SET id = 6 WHERE id = 11;
--- UPDATE tickets SET id = 7 WHERE id = 12;
--- ALTER TABLE tickets AUTO_INCREMENT = 8;
+DELETE FROM tickets WHERE id IN (6, 7, 8, 9, 10);
+UPDATE tickets SET id = 6 WHERE id = 11;
+UPDATE tickets SET id = 7 WHERE id = 12;
+ALTER TABLE tickets AUTO_INCREMENT = 8;
 
 SELECT 'departments' AS table_name, COUNT(*) AS total FROM departments UNION ALL SELECT 'users', COUNT(*) FROM users UNION ALL SELECT 'tickets', COUNT(*) FROM tickets;
 
@@ -103,4 +103,41 @@ SELECT t.id, t.title, t.status, CONCAT(u1.first_name, ' ', u1.last_name) AS subm
 
 SELECT t.id, t.title, t.status, CONCAT(u1.first_name, ' ', u1.last_name) AS submitted_by, CONCAT(u2.first_name, ' ', u2.last_name) AS assigned_to, d.name AS department FROM tickets t JOIN users u1 ON t.submitted_by = u1.id LEFT JOIN users u2 ON t.assigned_to = u2.id LEFT JOIN departments d ON t.department_id = d.id;
 
- 
+SELECT status, COUNT(*) AS total FROM tickets GROUP BY status;
+
+SELECT id, title, priority, status, submitted_by FROM tickets ORDER BY id DESC LIMIT 3;
+
+
+SELECT 'departments' AS table_name, COUNT(*) AS total FROM departments UNION ALL SELECT 'users', COUNT(*) FROM users UNION ALL SELECT 'tickets', COUNT(*) FROM tickets UNION ALL SELECT'ticket_assignments', COUNT(*) FROM ticket_assignments;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
